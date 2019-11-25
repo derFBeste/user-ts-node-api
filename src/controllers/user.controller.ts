@@ -1,6 +1,6 @@
 import { Controller, Get, Path, Route } from "tsoa";
-import { IUser } from "../types";
-import { User } from "../db/models";
+
+import { User, IUserModel } from "../db/models";
 
 @Route("/users")
 export class UserController extends Controller {

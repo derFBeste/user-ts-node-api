@@ -39,10 +39,10 @@ describe("Users", () => {
       const savedUser = await user.save();
 
       expect(savedUser._id).toBeDefined();
-      expect(savedUser["email"]).toEqual(testUser.email);
-      expect(savedUser["password"]).toEqual(testUser.password);
-      expect(savedUser["phone"]).toEqual(testUser.phone);
-      expect(savedUser["userId"]).toEqual(testUser.userId);
+      expect(savedUser.email).toEqual(testUser.email);
+      expect(savedUser.password).toEqual(testUser.password);
+      expect(savedUser.phone).toEqual(testUser.phone);
+      expect(savedUser.userId).toEqual(testUser.userId);
     });
 
     it("should insert many users", async () => {
@@ -99,12 +99,12 @@ describe("Users", () => {
       const goodNumber = "923-456-7890";
 
       const user = new User(badUser);
-      user["phone"] = badNumber;
+      user.phone = badNumber;
       let error = user.validateSync();
 
       expect(error.name).toEqual("ValidationError");
 
-      user["phone"] = goodNumber;
+      user.phone = goodNumber;
       error = user.validateSync();
       expect(error).toBeUndefined();
     });

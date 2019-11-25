@@ -120,5 +120,3 @@ There are quite a few things to do. I think these are some of the most important
 - With all of the data I just used simple strings. The API needs a good solution for things like users ids.
 
 - Is MongoDB a good choice? If the data model is going to be more complex a relational db might be a good idea.
-
-- Is there another ORM that would work well with Typescript. Mongoose has it's own models it would be nice to use the types for the models.

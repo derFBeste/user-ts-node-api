@@ -1,7 +1,11 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document, Model } from "mongoose";
 import { isEmpty } from "lodash";
+import { IEvent, IUser } from "../../types";
 // tslint:disable-next-line: no-var-requires
 const uniqueValidator = require("mongoose-unique-validator");
+
+export interface IEventModel extends IEvent, Document {}
+export interface IUserModel extends IUser, Document {}
 
 export const EventSchema: Schema = new Schema({
   created: Date,
@@ -35,5 +39,8 @@ export const UserSchema: Schema = new Schema({
 
 UserSchema.plugin(uniqueValidator);
 
-export const Event = model("Event", EventSchema);
-export const User = model("User", UserSchema);
+export const Event: Model<IEventModel> = model<IEventModel>(
+  "Event",
+  EventSchema
+);
+export const User: Model<IUserModel> = model<IUserModel>("User", UserSchema);

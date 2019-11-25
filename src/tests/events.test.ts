@@ -39,9 +39,9 @@ describe("Events", () => {
       const savedEvent = await event.save();
 
       expect(savedEvent._id).toBeDefined();
-      expect(savedEvent["eventType"]).toEqual(testEvent.eventType);
-      expect(savedEvent["userId"]).toEqual(testEvent.userId);
-      expect(savedEvent["created"]).toEqual(testEvent.created);
+      expect(savedEvent.eventType).toEqual(testEvent.eventType);
+      expect(savedEvent.userId).toEqual(testEvent.userId);
+      expect(savedEvent.created).toEqual(testEvent.created);
     });
 
     it("should insert many events", async () => {
@@ -78,8 +78,8 @@ describe("Events", () => {
         return docs;
       });
 
-      const results = records.filter(item => (item["userId"] = userId));
-      const isAllSameId = results.every(item => item["userId"] === userId);
+      const results = records.filter(item => (item.userId = userId));
+      const isAllSameId = results.every(item => item.userId === userId);
 
       expect(isAllSameId).toBe(true);
     });
@@ -95,10 +95,10 @@ describe("Events", () => {
       });
 
       const results = records.filter(
-        item => formatTime(new Date(item["created"])) === today
+        item => formatTime(new Date(item.created)) === today
       );
       expect(results.length).toBeGreaterThan(0);
-      expect(formatTime(new Date(results[0]["created"]))).toEqual(today);
+      expect(formatTime(new Date(results[0].created))).toEqual(today);
     });
 
     it("should compare time from db to format year-month-day", () => {
