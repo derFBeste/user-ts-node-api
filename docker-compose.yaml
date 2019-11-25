@@ -7,7 +7,6 @@ services:
       - "9001:8080"
     environment:
       SWAGGER_JSON: /swagger/swagger.json
-      # BASE_URL: http://localhost:9000/api/v1/
     volumes:
       - type: bind
         source: ./api/dist

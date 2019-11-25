@@ -5,25 +5,28 @@ import { User } from "../db/models";
 @Route("/users")
 export class UserController extends Controller {
   @Get("")
-  public async getUsers(): Promise<any> {
-    await User.find((err, docs) => {
+  public async getUsers(): Promise<any[]> {
+    const results = await User.find((err, docs) => {
       if (err) {
         console.error(err);
         return [];
       }
       return docs;
     });
+
+    return results;
   }
 
   @Get("/{userId}")
   public async getUser(@Path("userId") userId: string): Promise<any> {
-    await User.findOne({ userId }, (err, docs) => {
+    const results = await User.findOne({ userId }, (err, docs) => {
       if (err) {
         console.error(err);
         return {};
       }
       return docs;
     });
+
+    return results;
   }
-  // TODO: make a post an event
 }

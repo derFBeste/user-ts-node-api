@@ -1,4 +1,4 @@
-import { Controller, Get, Path, Route } from "tsoa";
+import { Controller, Get, Path, Route, Query } from "tsoa";
 import { Document } from "mongoose";
 
 import { IEvent } from "../types";
@@ -7,15 +7,17 @@ import { formatTime } from "../utils";
 
 @Route("/events")
 export class EventController extends Controller {
-  @Get("")
+  @Get("/")
   public async getEvents(): Promise<any> {
-    await Event.find((err, docs) => {
+    const records = await Event.find((err, docs) => {
       if (err) {
         console.error(err);
         return [];
       }
       return docs;
     });
+
+    return records;
   }
 
   @Get("/users/{userId}")
@@ -33,7 +35,7 @@ export class EventController extends Controller {
   }
 
   @Get("/today")
-  public async getTodaysEvents(): Promise<any> {
+  public async getTodaysEvents(@Query() timeFrame = "today"): Promise<any> {
     const today = formatTime(Date.now());
     const records = await Event.find((err, docs) => {
       if (err) {
