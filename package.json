@@ -5,7 +5,8 @@
   "main": "src/main.ts",
   "scripts": {
     "prestart": "npm run build:routes && npm run lint",
-    "start": "DEBUG=express:* ts-node ./src/main.ts",
+    "start": "ts-node ./src/main.ts",
+    "start:debug": "DEBUG=express:* ts-node ./src/main.ts",
     "start:watch": "nodemon",
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -13,9 +14,8 @@
     "build:swagger": "mkdir -p api/dist && tsoa swagger",
     "build:ts": "tsc -p src",
     "build:all": "npm run build:routes && npm run build:swagger && npm run build:ts",
-    "docker:build": "docker build -t ns8-api .",
-    "docker:stop": "docker stop ns8-api_swagger_1 ns8-api_web_1",
-    "docker:clean": "docker rm ns8-api_swagger_1 ns8-api_web_1",
+    "docker:stop": "docker stop swagger_ns8 mongo_ns8",
+    "docker:clean": "docker rm swagger_ns8 mongo_ns8",
     "docker:up": "docker-compose up -d",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
@@ -54,7 +54,7 @@
       "src"
     ],
     "delay": "3",
-    "exec": "npm run start",
+    "exec": "npm run start:debug",
     "ext": "ts"
   },
   "jest": {

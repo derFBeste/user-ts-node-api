@@ -5,53 +5,7 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {
-			"User": {
-				"properties": {
-					"email": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					},
-					"phone": {
-						"type": "string"
-					},
-					"userId": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"email",
-					"password",
-					"phone",
-					"userId"
-				],
-				"type": "object",
-				"additionalProperties": true
-			},
-			"Event": {
-				"properties": {
-					"eventType": {
-						"type": "string"
-					},
-					"user": {
-						"$ref": "#/components/schemas/User"
-					},
-					"date": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"eventType",
-					"user",
-					"date"
-				],
-				"type": "object",
-				"additionalProperties": true
-			}
-		},
+		"schemas": {},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -72,10 +26,8 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/Event"
-									},
-									"type": "array"
+									"additionalProperties": true,
+									"type": "object"
 								}
 							}
 						},
@@ -86,7 +38,7 @@
 				"parameters": []
 			}
 		},
-		"/events/{userId}": {
+		"/events/users/{userId}": {
 			"get": {
 				"operationId": "GetUserEvent",
 				"responses": {
@@ -94,21 +46,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"properties": {
-										"userId": {
-											"type": "string"
-										},
-										"events": {
-											"items": {
-												"type": "string"
-											},
-											"type": "array"
-										}
-									},
-									"required": [
-										"events",
-										"userId"
-									],
+									"additionalProperties": true,
 									"type": "object"
 								}
 							}
@@ -137,47 +75,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"properties": {
-										"events": {
-											"items": {
-												"type": "string"
-											},
-											"type": "array"
-										}
-									},
-									"required": [
-										"events"
-									],
-									"type": "object"
-								}
-							}
-						},
-						"description": "Ok"
-					}
-				},
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/events/{date}": {
-			"get": {
-				"operationId": "GetEventByDate",
-				"responses": {
-					"200": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"properties": {
-										"events": {
-											"items": {
-												"type": "string"
-											},
-											"type": "array"
-										}
-									},
-									"required": [
-										"events"
-									],
+									"additionalProperties": true,
 									"type": "object"
 								}
 							}
@@ -209,60 +107,6 @@
 				"parameters": []
 			}
 		},
-		"/hello": {
-			"get": {
-				"operationId": "Hello",
-				"responses": {
-					"200": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"properties": {
-										"msg": {
-											"type": "string"
-										}
-									},
-									"required": [
-										"msg"
-									],
-									"type": "object"
-								}
-							}
-						},
-						"description": "Ok"
-					}
-				},
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/msg": {
-			"get": {
-				"operationId": "Msg",
-				"responses": {
-					"200": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"properties": {
-										"msg": {
-											"type": "string"
-										}
-									},
-									"required": [
-										"msg"
-									],
-									"type": "object"
-								}
-							}
-						},
-						"description": "Ok"
-					}
-				},
-				"security": [],
-				"parameters": []
-			}
-		},
 		"/users": {
 			"get": {
 				"operationId": "GetUsers",
@@ -271,10 +115,8 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/User"
-									},
-									"type": "array"
+									"additionalProperties": true,
+									"type": "object"
 								}
 							}
 						},
@@ -293,21 +135,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"properties": {
-										"userId": {
-											"type": "string"
-										},
-										"events": {
-											"items": {
-												"type": "string"
-											},
-											"type": "array"
-										}
-									},
-									"required": [
-										"events",
-										"userId"
-									],
+									"additionalProperties": true,
 									"type": "object"
 								}
 							}
@@ -331,7 +159,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://localhost:3000/api/v1"
+			"url": "https://localhost:9000/api/v1"
 		}
 	]
 }

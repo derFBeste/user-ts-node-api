@@ -6,13 +6,12 @@ services:
     ports:
       - "9001:8080"
     environment:
-      # SWAGGER_JSON: /swagger/swagger.json
-      API_URL: http://localhost:9000/api/v1/
-    # volumes:
-    #   - type: bind
-    #     source: ./api/dist
-    #     # source: ./dist/api
-    #     target: /swagger
+      SWAGGER_JSON: /swagger/swagger.json
+      # BASE_URL: http://localhost:9000/api/v1/
+    volumes:
+      - type: bind
+        source: ./api/dist
+        target: /swagger
   mongo:
     container_name: mongo_ns8
     image: mongo:latest

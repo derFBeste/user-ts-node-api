@@ -9,14 +9,4 @@ export class IndexController extends Controller {
   public async index() {
     return swaggerConfig;
   }
-
-  @Get("/hello")
-  public hello() {
-    return { msg: "Hello World!" };
-  }
-
-  @Get("/msg")
-  public msg() {
-    return { msg: "This is a message" };
-  }
 }

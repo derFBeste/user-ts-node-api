@@ -104,6 +104,8 @@ make tests more robust
 
 error handeling response codes
 
+use https
+
 TODO:
 
 - make union type for IEvent & Document
