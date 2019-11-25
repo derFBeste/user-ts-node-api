@@ -1,0 +1,66 @@
+{
+  "name": "ns8-api",
+  "version": "1.0.0",
+  "description": "ns8 tech-assessment",
+  "main": "src/main.ts",
+  "scripts": {
+    "prestart": "npm run build:routes && npm run lint",
+    "start": "DEBUG=express:* ts-node ./src/main.ts",
+    "start:watch": "nodemon",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "build:routes": "mkdir -p src/routes && tsoa routes",
+    "build:swagger": "mkdir -p api/dist && tsoa swagger",
+    "build:ts": "tsc -p src",
+    "build:all": "npm run build:routes && npm run build:swagger && npm run build:ts",
+    "docker:build": "docker build -t ns8-api .",
+    "docker:stop": "docker stop ns8-api_swagger_1 ns8-api_web_1",
+    "docker:clean": "docker rm ns8-api_swagger_1 ns8-api_web_1",
+    "docker:up": "docker-compose up -d",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "author": "Fred Besteman",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/mongodb": "^3.3.11",
+    "@types/mongoose": "^5.5.32",
+    "@types/node": "^12.12.11",
+    "date-fns": "^2.8.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.7.12",
+    "mongoose-unique-validator": "^2.0.3",
+    "nodemon": "^2.0.0",
+    "ts-node": "^8.5.2",
+    "tsoa": "^2.5.9",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules",
+      "dist",
+      "src/routes"
+    ],
+    "watch": [
+      "src"
+    ],
+    "delay": "3",
+    "exec": "npm run start",
+    "ext": "ts"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  swagger:
+    container_name: swagger_ns8
+    image: swaggerapi/swagger-ui
+    ports:
+      - "9001:8080"
+    environment:
+      # SWAGGER_JSON: /swagger/swagger.json
+      API_URL: http://localhost:9000/api/v1/
+    # volumes:
+    #   - type: bind
+    #     source: ./api/dist
+    #     # source: ./dist/api
+    #     target: /swagger
+  mongo:
+    container_name: mongo_ns8
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "9002:27017"
