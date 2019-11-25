@@ -47,6 +47,8 @@ npm run docker:up
 
 The tests will seed the database with test data.
 
+Note: The first time you run this on a fresh database sometimes you have to run it twice.
+
 ```sh
 npm run test
 ```

@@ -1,6 +1,6 @@
 import { Controller, Get, Path, Route, Query } from "tsoa";
 
-import { Event, IEventModel } from "../db/models";
+import { Event } from "../db/models";
 import { formatTime } from "../utils";
 
 @Route("/events")
