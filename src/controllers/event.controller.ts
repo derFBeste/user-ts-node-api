@@ -1,6 +1,16 @@
-import { Controller, Get, Path, Route, Query } from "tsoa";
+import {
+  Controller,
+  Get,
+  Path,
+  Route,
+  Query,
+  Post,
+  Body,
+  SuccessResponse,
+} from "tsoa";
 
 import { Event } from "../db/models";
+import { IEvent } from "../types";
 import { formatTime } from "../utils";
 
 @Route("/events")
@@ -45,5 +55,13 @@ export class EventController extends Controller {
     return records.filter(
       item => formatTime(new Date(item["created"])) === today
     );
+  }
+
+  @SuccessResponse("201", "Created")
+  @Post("")
+  public async createEvent(@Body() requestBody: IEvent): Promise<any> {
+    Event.create(requestBody);
+    this.setStatus(201);
+    return requestBody;
   }
 }

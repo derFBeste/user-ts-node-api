@@ -1,6 +1,16 @@
-import { Controller, Get, Path, Route } from "tsoa";
+import {
+  Controller,
+  Get,
+  Path,
+  Route,
+  SuccessResponse,
+  Post,
+  Body,
+} from "tsoa";
 
 import { User } from "../db/models";
+import { IUser } from "../types";
+import { request } from "http";
 
 @Route("/users")
 export class UserController extends Controller {
@@ -28,5 +38,13 @@ export class UserController extends Controller {
     });
 
     return results;
+  }
+
+  @SuccessResponse("201", "Created")
+  @Post("")
+  public async createUser(@Body() requestBody: IUser): Promise<any> {
+    User.create(requestBody);
+    this.setStatus(201);
+    return requestBody;
   }
 }
