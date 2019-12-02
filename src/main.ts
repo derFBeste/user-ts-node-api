@@ -1,7 +1,7 @@
 import * as express from "express";
 import { RegisterRoutes } from "./routes/routes";
 import { connectToMongo } from "./db/utils";
-// tslint:disable-next-line: no-var-requires
+// tslint:disable-next-line:no-var-requires
 const bodyParser = require("body-parser");
 
 const app = express();
